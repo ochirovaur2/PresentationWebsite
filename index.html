@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <style type="text/css">
+    :root{
+
+      --primary-color: #fff;
+      --secondary-color: #333;
+      --page-1-color: steelblue;
+      --page-2-color: tan;
+
+    }
+  
+    /* Reset*/
+    *{
+      margin: 0;
+      padding: 0;
+      color: var(--primary-color);
+    }
+    html,body{
+      overflow: hidden;
+    }
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.4;
+    }
+    a{
+      text-decoration: none;
+    }
+    /* utility */
+    .py-2 {
+      padding: 1rem 0;
+
+    }
+    .btn{
+      padding: 1rem 2rem;
+      background: var(--secondary-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      display: inline-block;
+    }
+    .btn:hover{
+      background: var(--primary-color) ;
+      color: var(--secondary-color) ;
+    }
+    
+    .section{
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      
+      height: 100vh;
+      
+      padding: 0 4rem;
+    }
+    .section h1{
+      position: relative;
+      animation: animate1 1s forwards;
+      font-size: 4rem;
+    }
+    .section p {
+      position: relative;
+      animation: animate2 2s forwards ease-in;
+      font-size: 1.3rem;
+
+    }
+    .section:nth-child(1){
+      background: var(--page-1-color);
+    }
+    .section:nth-child(2){
+      background: var(--page-2-color);
+    }
+    @keyframes animate1{
+      from{
+        top: -40%;
+        opacity: 0;
+      }
+      to{
+        top: 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes animate2{
+      from{
+        left: -100%;
+        opacity: 0;
+      }
+      to{
+        left: 0;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="section " id="page">
+      <h1 class="py-2">Welcome to my presentation</h1> 
+      <p class="py-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae adipisci maiores, numquam totam assumenda laudantium. Accusantium voluptate doloribus, optio error.</p>
+      <a href="#page2" class="btn">Next page</a>
+  </div>
+  <div class="section" id="page2">
+      
+      <h1 class="py-2" >Page 2</h1> 
+      <p class="py-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae adipisci maiores, numquam totam assumenda laudantium. Accusantium voluptate doloribus, optio error.</p>
+      <a href="#page" class="btn">Previous  page</a>
+  </div>
+  <script type="text/javascript">
+    $('a').on('click', function(e){
+          
+          if(this.hash !== "") {
+           
+            e.preventDefault();
+            
+            const hash = this.hash;
+            $('html, body').animate(
+              {
+                scrollTop: $(hash).offset().top
+              }, 700
+            );
+          }
+        });
+  </script>
+</body>
+</html>
